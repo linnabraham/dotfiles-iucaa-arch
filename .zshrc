@@ -100,8 +100,10 @@ if [ -n "$ZSH_VERSION" ]; then
 fi
 
 export LS_OPTIONS="--color=auto"
+bindkey '[Z' autosuggest-accept  # bind ctrl+tab to accept the first autosuggestion
 
 # change the different background coloring for directores which have o+w access
 # to merely underline
 export LS_COLORS="$LS_COLORS:ow=1;34;4:"
 
+[ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
