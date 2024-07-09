@@ -1,0 +1,9 @@
+play(){
+    findfile="$(find -L ~  -iname "*.mp3" -maxdepth 5 2>/dev/null | fzf)"
+    #touch ~/.mpvhist
+    echo "$findfile" >> ~/.mpvhist
+    #uniq < ~/.mpvhist >> ~/.mpvhist
+    sort -u ~/.mpvhist -o ~/.mpvhist
+    mpv --loop --shuffle $findfile
+    echo $findfile
+}
