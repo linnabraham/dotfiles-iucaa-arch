@@ -88,6 +88,8 @@ current_path+="${(j:/:)paths}"
 
 add-zsh-hook precmd trunc_path
 
+NEWLINE=$'\n'
+PROMPT='%{$fg[green]%}%{$fg[blue]%}%n@%{$fg[blue]%}%M %{$fg[magenta]%}% ${current_path} ${vcs_info_msg_0_}${NEWLINE}>'
 # Set up the prompt (with git branch name)
 
 setopt PROMPT_SUBST
