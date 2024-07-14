@@ -44,6 +44,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'lervag/vimtex'
 Plug 'jamessan/vim-gnupg'
 Plug 'preservim/nerdtree'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 " -----------------------------------------------------------------------------
