@@ -7,3 +7,7 @@ play(){
     mpv --loop --shuffle $findfile
     echo $findfile
 }
+
+wedit(){
+    vim "$(which "$1")"
+}
