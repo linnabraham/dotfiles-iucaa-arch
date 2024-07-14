@@ -75,5 +75,6 @@ set listchars=tab:\|\ ,trail:·
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " change default keybinding to accept coc dropdown from Ctrl+y
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
-let g:vimtex_view_general_viewer = 'mupdf'
+"let g:vimtex_view_general_viewer = 'mupdf'
+let g:vimtex_view_method = 'mupdf'
 nnoremap <C-n> :NERDTreeToggle<CR>
