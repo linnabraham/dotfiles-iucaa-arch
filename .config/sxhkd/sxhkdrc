@@ -40,6 +40,8 @@ super + A
 	dmenu_run
 super + BackSpace
 	screenkey
+# this key is bound in picard
+#alt + A
 super + b
 	bukumenu
 	dmenu-search-urls.sh
@@ -54,6 +56,10 @@ super + s
 	rofi-screenshot
 super + S
 	rofi-screenshot -s
+super + p
+	rofi-pass
+#	passmenu
+#super + P - conflict with subl keybinding
 super + u
 	wrapper-wmctrl.sh mpdevil
 	jumpapp mpdevil
