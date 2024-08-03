@@ -53,9 +53,9 @@ super + D
 	#rofi -i -show run
 #	buku-dmenu
 super + s
-	rofi-screenshot
+	ROFI_SCREENSHOT_DIR=$HOME/Pictures/screenrecs rofi-screenshot
 super + S
-	rofi-screenshot -s
+	ROFI_SCREENSHOT_DIR=$HOME/Pictures/screenrecs rofi-screenshot -s
 super + p
 	rofi-pass
 #	passmenu
