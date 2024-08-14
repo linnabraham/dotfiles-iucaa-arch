@@ -46,6 +46,7 @@ Plug 'jamessan/vim-gnupg'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
+Plug 'jreybert/vimagit'
 call plug#end()
 
 " -----------------------------------------------------------------------------
