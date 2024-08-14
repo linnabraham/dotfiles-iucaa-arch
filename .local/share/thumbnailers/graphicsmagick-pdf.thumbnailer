@@ -1,0 +1,3 @@
+[Thumbnailer Entry]
+Exec=gm convert -quality 100 -thumbnail %s -flatten %i[0] %o
+MimeType=application/pdf;application/x-pdf;image/pdf;application/x-gzpostscript;application/postscript;application/vnd.ms-xpsdocument;
