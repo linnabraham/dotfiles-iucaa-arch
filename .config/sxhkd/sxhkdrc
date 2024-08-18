@@ -78,5 +78,5 @@ shift + Next
 	mpc next
 Print
 	openbox-screenshot.sh
-control + Print
-	maimpick
+super + Print
+	xmenu-screenshot.sh
