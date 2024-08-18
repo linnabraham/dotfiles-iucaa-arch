@@ -213,8 +213,9 @@ bindsym $mod+z move workspace to output left
 
 #add gaps with i3-gaps
 for_window [class="^.*"] border pixel 2 
-gaps inner 2
-#smart_borders on #removes border when only 1 window is open
+gaps inner 0
+#removes border when only 1 window is open
+smart_borders on
 
 # Master-stack layout (kind of)
 default_orientation vertical
@@ -245,7 +246,7 @@ for_window [class="Spotify" ] move scratchpad, scratchpad show
 bindsym $mod+y [class="^Spotify"] scratchpad show
 tiling_drag modifier titlebar
 assign [class="Brave-browser"] $ws10
-assign [class="mpdevil"] $ws9
+assign [class="Mpdevil"] $ws9
 for_window [class="org-wellkord-globonote-Main"] floating enable, sticky enable
 
 #startup executables
