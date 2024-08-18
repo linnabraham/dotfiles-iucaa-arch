@@ -233,17 +233,6 @@ bindsym $mod+Tab exec rofi -i -show window
 #bindsym $mod+F12 exec "brightnessctl set +5% && notify-send Brightness $(brightnessctl get)" 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
-#bindsym --release $mod+d workspace back_and_forth
-for_window [class="^TelegramDesktop"] move scratchpad, scratchpad show
-bindsym $mod+m [class="^TelegramDesktop"] scratchpad show
-#for_window [class="^Logseq"] move scratchpad, scratchpad show
-#bindsym $mod+n [class="^Logseq"] scratchpad show
-for_window [class=workterm instance="workterm"] move scratchpad
-bindsym $mod+Shift+Return [class="^workterm"] scratchpad show
-for_window [class="st-calc" ] move scratchpad, scratchpad show
-bindsym $mod+Shift+y [class="^st-calc"] scratchpad show
-for_window [class="Spotify" ] move scratchpad, scratchpad show
-bindsym $mod+y [class="^Spotify"] scratchpad show
 tiling_drag modifier titlebar
 assign [class="Brave-browser"] $ws10
 assign [class="Mpdevil"] $ws9
