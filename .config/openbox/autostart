@@ -14,9 +14,7 @@
 
 # If you want to use XFCE config tools...
 #
-#xfce-mcs-manager &
-#plank &
-setbg /home/linn/Downloads/wallpapers
+setbg -s /home/linn/Downloads/wallpapers
 polybar &
 copyq &
 mail-notify.sh &
@@ -29,7 +27,6 @@ xclickroot xmenu.sh &
 
 # addition when working from i3
 sxhkd &
-gtk-launch koofr &
 playerctld daemon &
 
 while true; do
@@ -37,3 +34,6 @@ khal-notify.py
 sleep 10
 done &
 slack -u &
+/usr/bin/dropbox &
+mpd-mpris &
+alttab -fg "#d58681" -bg "#4a4a4a" -frame "#eb564d" -t 128x150 -i 127x64 -d 1 &
