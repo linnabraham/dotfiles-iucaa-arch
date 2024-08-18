@@ -241,7 +241,5 @@ for_window [class="org-wellkord-globonote-Main"] floating enable, sticky enable
 #startup executables
 #exec --no-startup-id /$HOME/.config/i3/autostart.sh
 # startup a hidden terminal for general purpose work that becomes a scratchpad
-exec --no-startup-id alacritty --class="workterm"
 exec --no-startup-id $HOME/.config/openbox/autostart
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
+bindsym $mod+Return exec --no-startup-id alacritty -e sh -c 'tmux attach-session -t default || tmux new-session -s default'
