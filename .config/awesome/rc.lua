@@ -313,6 +313,15 @@ awful.keyboard.append_global_keybindings({
               {description = "select previous", group = "layout"}),
 })
 
+    awful.key({ modkey}, "e",
+        function ()
+            if client.focus then
+                client.focus:swap(awful.client.getmaster())
+            end
+        end,
+        {description = "move focused window to master", group = "client"}),
+})
+
 
 awful.keyboard.append_global_keybindings({
     awful.key {
