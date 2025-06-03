@@ -108,3 +108,19 @@ export LS_COLORS="$LS_COLORS:ow=1;34;4:"
 
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
 source ~/.zshrc_scripts
+source ~/.secrets
+# wrapper for cd when exiting lf ref - https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
+lfcd () {
+    tmp="$(mktemp)"
+    lfub -last-dir-path="$tmp" "$@"
+    if [ -f "$tmp" ]; then
+        dir="$(cat "$tmp")"
+        rm -f "$tmp"
+        if [ -d "$dir" ]; then
+            if [ "$dir" != "$(pwd)" ]; then
+                cd "$dir"
+            fi
+        fi
+    fi
+}
+export FZF_DEFAULT_OPTS="--layout=reverse --height=40% --border"

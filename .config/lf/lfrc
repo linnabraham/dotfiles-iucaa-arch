@@ -17,6 +17,8 @@
 set previewer '~/.config/lf/preview'
 set cleaner '~/.config/lf/cleaner'
 set icons
+set sortby 'time'
+set reverse true
 
 cmd open-with %"$@" "$fx"
 map ` push :open-with<space>
@@ -25,3 +27,5 @@ cmd yank-paths $printf '%s' "$fx" | sed 's|^|file://|' | xclip -i -selection cli
 map Y yank-paths
 
 cmd mkdir ${{ printf "Folder Name: "; read ans; mkdir $ans 2> /dev/null || sudo mkdir $ans }}
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map D delete
