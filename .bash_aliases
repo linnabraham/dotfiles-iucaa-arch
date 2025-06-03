@@ -9,26 +9,30 @@ alias sudox="sudo chmod u+x"
 alias p='ping -c 10 google.com'
 alias wget='wget -c'
 alias yta='yt-dlp --extract-audio --audio-format mp3'
-alias gd='git diff'
+alias gd='git diff --color=always'
+alias ga='git add'
 alias gp="git push"
 alias gs='git status'
 alias gsu='git status -uno'
+alias gcm='git commit -m'
 alias gl='git log --graph --pretty=format:"%C(auto)%h%C(reset) %ad %C(auto)%d%C(reset) %s" --date=format:"%b %d, %Y"'
-alias sb='source ~/.bashrc'
+alias sb='source ~/.zshrc'
 alias cheat='cheat --all'
 alias vi='vim'
 alias bm='bashmount'
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias x='exit'
-alias t='trello-cmd'
 alias pconf='sudo vim /etc/pacman.conf'
+alias t='tmux'
 # confirm before overwriting something
 alias cp="cp -iv"
 alias mv='mv -iv'
 alias rm='rm -Iv'
 alias mkd="mkdir -pv"
 alias pi='sudo pacman -S --needed --noconfirm'
-alias lf='lfub'
+alias lf='lfcd'
+alias y='yadm'
+alias trr='transmission-remote'
 if command -v exa >/dev/null; then
     alias ls='exa-wrapper.sh'
 fi
@@ -45,7 +49,7 @@ alias \
 # frequently used programs
 alias \
     g='git' \
-    p='pacman'
-
+    p='pacman' \
+    py='python'
 # ZSH aliases
 alias zreloadkeys="killall sxhkd && sxhkd &!"
