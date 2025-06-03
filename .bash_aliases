@@ -18,12 +18,13 @@ alias gcm='git commit -m'
 alias gl='git log --graph --pretty=format:"%C(auto)%h%C(reset) %ad %C(auto)%d%C(reset) %s" --date=format:"%b %d, %Y"'
 alias sb='source ~/.zshrc'
 alias cheat='cheat --all'
-alias vi='vim'
+alias vi='nvim'
+alias vim='nvim'
 alias bm='bashmount'
 alias tlmgr='/usr/share/texmf-dist/scripts/texlive/tlmgr.pl --usermode'
 alias x='exit'
-alias pconf='sudo vim /etc/pacman.conf'
 alias t='tmux'
+alias pconf='sudo nvim /etc/pacman.conf'
 # confirm before overwriting something
 alias cp="cp -iv"
 alias mv='mv -iv'
@@ -50,6 +51,7 @@ alias \
 alias \
     g='git' \
     p='pacman' \
+    v='nvim' \
     py='python'
 # ZSH aliases
 alias zreloadkeys="killall sxhkd && sxhkd &!"
