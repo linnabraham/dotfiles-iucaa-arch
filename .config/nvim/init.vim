@@ -1,11 +1,12 @@
 call plug#begin(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/plugged"'))
-Plug 'jreybert/vimagit'
+"Plug 'jreybert/vimagit'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'lervag/vimtex'
 Plug 'preservim/nerdcommenter' " For code commenting powers
 Plug 'SirVer/ultisnips' "| Plug 'honza/vim-snippets'
 Plug 'preservim/nerdtree'
 Plug 'dense-analysis/ale' " Latex linting
+Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'}
 call plug#end()
 
 " for copy to system clipboard; requires +clipboard
