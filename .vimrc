@@ -47,6 +47,10 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'jreybert/vimagit'
+"" A bunch of useful language related snippets (ultisnips is the engine).
+Plug 'SirVer/ultisnips' "| Plug 'honza/vim-snippets'
+Plug 'romainl/vim-qf' "Quit quickfix window when last window is closed
+
 call plug#end()
 
 " -----------------------------------------------------------------------------
@@ -79,5 +83,10 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " change default keybinding to accept coc dropdown from Ctrl+y
 inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
 "let g:vimtex_view_general_viewer = 'mupdf'
-let g:vimtex_view_method = 'mupdf'
+let g:vimtex_view_general_viewer = 'evince'
+let g:vimtex_quickfix_open_on_warning = 0
 nnoremap <C-n> :NERDTreeToggle<CR>
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/my-snippets/']
+let g:UltiSnipsExpandTrigger       = '<Tab>'    " use Tab to expand snippets
+let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward through tabstops
+let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'  " use Shift-Tab to move backward through tabstops
