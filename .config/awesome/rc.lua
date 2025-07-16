@@ -320,6 +320,8 @@ awful.keyboard.append_global_keybindings({
             end
         end,
         {description = "move focused window to master", group = "client"}),
+    awful.key({ modkey}, "q", function () awful.spawn('rofi -show calc -modi calc -no-show-match -no-sor')	end,
+              {description = "Rofi based calculator", group = "client"}),
 })
 
 
