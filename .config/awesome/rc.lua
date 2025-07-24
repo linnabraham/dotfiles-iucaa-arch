@@ -69,12 +69,13 @@ end)
 -- }}}
 
 -- {{{ Variable definitions
+awful.screen.set_auto_dpi_enabled( true )
 -- Themes define colours, icons, font and wallpapers.
 local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), "default")
 beautiful.init(theme_path)
 
 -- This is used later as the default terminal and editor to run.
-terminal = "xterm"
+terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
