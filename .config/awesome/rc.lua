@@ -52,6 +52,9 @@ naughty.config.presets.critical = {
 local ruled = require("ruled")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
+local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -178,7 +181,10 @@ screen.connect_signal("request::desktop_decoration", function(s)
             awful.button({ }, 5, function(t) awful.tag.viewnext(t.screen) end),
         }
     }
-
+local separator = wibox.widget {
+	widget = wibox.widget.textbox,
+	text = " ",
+}
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
@@ -207,6 +213,14 @@ screen.connect_signal("request::desktop_decoration", function(s)
             },
             s.mytasklist, -- Middle widget
             { -- Right widgets
+		volume_widget({step = '1'}),
+		separator,
+		ram_widget(),
+		brightness_widget{
+		    type = 'icon_and_text',
+		    program = 'xbacklight',
+		    step = 2,
+		},
                 layout = wibox.layout.fixed.horizontal,
                 mykeyboardlayout,
                 wibox.widget.systray(),
