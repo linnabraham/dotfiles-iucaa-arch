@@ -13,6 +13,41 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 -- Notification library
 local naughty = require("naughty")
+naughty.config.defaults.fg = "#FFD700"  -- Gold
+naughty.config.defaults.bg = "#000000"  -- Black
+naughty.config.defaults.border_width = 2
+naughty.config.defaults.border_color = "#FFA500"  -- Orange border
+naughty.config.defaults.font = "Source Code Pro 10"
+naughty.config.defaults.margin = 8
+naughty.config.defaults.icon_size = 32
+naughty.config.defaults.ontop = true
+naughty.config.defaults.timeout = 10
+
+-- Low urgency
+naughty.config.presets.low = {
+    font = "Source Code Pro 10",
+    fg = "#ffffff",
+    bg = "#2b2b2b",
+    timeout = 10
+}
+
+-- Normal urgency
+naughty.config.presets.normal = {
+    font = "Source Code Pro 10",
+    fg = "#ebdbb2",
+    bg = "#2b2b2b",
+    timeout = 10
+    -- No border concept here
+}
+
+-- Critical urgency
+naughty.config.presets.critical = {
+    font = "Source Code Pro bold 10",
+    fg = "#ffffff",
+    bg = "#900000",
+    timeout = 0
+}
+
 -- Declarative object management
 local ruled = require("ruled")
 local menubar = require("menubar")
