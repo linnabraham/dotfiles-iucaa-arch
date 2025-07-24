@@ -598,10 +598,50 @@ ruled.notification.connect_signal('request::rules', function()
     }
 end)
 
+-- Global flag
+_G.notifications_paused = false
+
+-- Disconnect any existing handlers on request::display
+-- (optional, but ensures we don’t get duplicate boxes)
+naughty.disconnect_signal("request::display", naughty.layout.box)
+
+-- Install our single display handler
 naughty.connect_signal("request::display", function(n)
+    if _G.notifications_paused then
+        return
+    end
+    -- show the notification with the default layout
     naughty.layout.box { notification = n }
 end)
 
+-- Global control functions:
+
+_G.pause_notifications = function()
+    _G.notifications_paused = true
+    naughty.notify {
+        preset = naughty.config.presets.low,
+        title  = "Notifications Paused",
+        text   = "New notifications will be suppressed."
+    }
+end
+
+_G.resume_notifications = function()
+    _G.notifications_paused = false
+    naughty.notify {
+        preset = naughty.config.presets.low,
+        title  = "Notifications Resumed",
+        text   = "Notifications will now appear."
+    }
+end
+
+_G.toggle_notifications = function()
+    _G.notifications_paused = not _G.notifications_paused
+    naughty.notify {
+        preset = naughty.config.presets.low,
+        title  = "Notifications",
+        text   = _G.notifications_paused and "Paused" or "Resumed"
+    }
+end
 -- }}}
 
 -- Enable sloppy focus, so that focus follows mouse.
