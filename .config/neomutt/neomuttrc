@@ -9,3 +9,11 @@ set spoolfile = +"INBOX"
 set record = +"Sent"
 set postponed = +"Drafts"
 set trash = +"Trash"
+
+# iucaa smtp
+set smtp_url = smtp://daakghar.iucaa.in/
+set smtp_user = $imap_user
+set smtp_pass = $imap_pass
+
+# DISPLAY
+source "$HOME/.config/neomutt/display" 
