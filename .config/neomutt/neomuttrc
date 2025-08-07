@@ -1,7 +1,9 @@
+# vim: filetype=neomuttrc
 set autoedit = no
 set xterm_set_titles=yes
-set mark_old = no
 
+# Unread mail stay unread until read
+set mark_old = no		
 set forward_attachments = yes
 
 # display non-ASCII characters in headers
@@ -79,3 +81,5 @@ bind index,pager \CN sidebar-next
 bind index,pager \CO sidebar-open
 # Ctrl-O – Open Highlighted Mailbox
 set mailcap_path = $HOME/.config/neomutt/mailcap
+# automatically show html (mailcap uses lynx)
+auto_view text/html
