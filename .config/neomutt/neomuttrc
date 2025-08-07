@@ -48,7 +48,8 @@ set imap_keepalive = 300
 set mail_check = 120
 
 set header_cache = "$HOME/.muttcache"
-set message_cachedir = "$HOME/.muttcache"
+set message_cache_dir = "$HOME/.muttcache"
+set message_cache_clean = yes
 
 # IUCAA
 set real_name = 'Linn Abraham'
