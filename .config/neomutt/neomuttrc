@@ -75,12 +75,19 @@ source "$HOME/.config/neomutt/display"
 set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
 bind index,pager B sidebar-toggle-visible
 
-bind index,pager \CP sidebar-prev
-# Ctrl-P – Previous Mailbox
-bind index,pager \CN sidebar-next
-# Ctrl-N – Next Mailbox
-bind index,pager \CO sidebar-open
+# Previous Mailbox
+bind index,pager J sidebar-next
+# Next Mailbox
+bind index,pager K sidebar-prev
 # Ctrl-O – Open Highlighted Mailbox
+bind index,pager \CO sidebar-open
+
+bind pager j next-line
+bind pager k previous-line
+
+bind index j next-entry
+bind index k previous-entry
+
 set mailcap_path = $HOME/.config/neomutt/mailcap
 # automatically show html (mailcap uses lynx)
 auto_view text/html
