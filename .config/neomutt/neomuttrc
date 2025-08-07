@@ -1,0 +1,11 @@
+# IUCAA
+set real_name = 'Linn Abraham'
+set from = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2-`"
+# IMAP
+set folder = 'imaps://daakghar.iucaa.in/'
+set imap_user = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2- | cut -d'@' -f1`"
+set imap_pass="`pass show iucaa/zimbra/linn | head -n 1`"
+set spoolfile = +"INBOX"
+set record = +"Sent"
+set postponed = +"Drafts"
+set trash = +"Trash"
