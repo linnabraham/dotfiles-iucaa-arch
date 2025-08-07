@@ -60,6 +60,8 @@ set record = +"Sent"
 set postponed = +"Drafts"
 set trash = +"Trash"
 
+mailboxes +INBOX +Sent +Drafts +Trash
+
 # iucaa smtp
 set smtp_url = smtp://daakghar.iucaa.in/
 set smtp_user = $imap_user
@@ -67,4 +69,12 @@ set smtp_pass = $imap_pass
 
 # DISPLAY
 source "$HOME/.config/neomutt/display" 
+set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
+bind index,pager B sidebar-toggle-visible
 
+bind index,pager \CP sidebar-prev
+# Ctrl-P – Previous Mailbox
+bind index,pager \CN sidebar-next
+# Ctrl-N – Next Mailbox
+bind index,pager \CO sidebar-open
+# Ctrl-O – Open Highlighted Mailbox
