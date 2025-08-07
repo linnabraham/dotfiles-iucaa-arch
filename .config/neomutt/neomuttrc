@@ -78,3 +78,4 @@ bind index,pager \CN sidebar-next
 # Ctrl-N – Next Mailbox
 bind index,pager \CO sidebar-open
 # Ctrl-O – Open Highlighted Mailbox
+set mailcap_path = $HOME/.config/neomutt/mailcap
