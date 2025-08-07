@@ -1,3 +1,6 @@
+set header_cache = "$HOME/.muttcache"
+set message_cachedir = "$HOME/.muttcache"
+
 # IUCAA
 set real_name = 'Linn Abraham'
 set from = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2-`"
