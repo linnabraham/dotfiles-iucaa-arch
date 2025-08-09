@@ -1,0 +1,15 @@
+#!/bin/sh
+
+#xrandr --output eDP-1 --mode "1280x720"
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+mpris-proxy & 		# for general media playback control
+#xcompmgr &		# compositor
+picom &
+xset -b
+xset r rate 300 50
+# map menu key to rupee symbol
+xmodmap -e "keycode 135 = U20B9"
+setxkbmap -option caps:escape
+
+[[ -f ~/.bash_profile ]] && source ~/.bash_profile
+[[ -f ~/.xinitrc ]] && source ~/.xinitrc
