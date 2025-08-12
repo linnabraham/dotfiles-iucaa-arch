@@ -326,7 +326,7 @@ awful.keyboard.append_global_keybindings({
               {description = "swap with next client by index", group = "client"}),
     awful.key({ modkey, "Shift"   }, "k", function () awful.client.swap.byidx( -1)    end,
               {description = "swap with previous client by index", group = "client"}),
-    awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
+    awful.key({ modkey, "Shift"   }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
@@ -346,6 +346,17 @@ awful.keyboard.append_global_keybindings({
               {description = "select previous", group = "layout"}),
 })
 
+awful.keyboard.append_global_keybindings({
+    awful.key({ modkey }, "slash", function () awful.spawn('mpc_control -t')    end,
+              {description = "Run mpc control with track option", group = "client"}),
+    awful.key({ modkey }, "p", function () awful.spawn('rofi-pass')    end,
+              {description = "Run rofi-pass", group = "client"}),
+    awful.key({ modkey }, "a", function() awful.spawn.with_shell('j4-dmenu-desktop') end,
+              {description = "Run j4-dmenu-desktop", group = "launcher"}),
+    awful.key({ modkey, "Shift" }, "slash", function () awful.spawn('dmenu-wrapper-music')    end,
+              {description = "Dmenu script for selecting music to play", group = "client"}),
+    awful.key({ modkey}, "c", function () awful.spawn('mpdmenu.sh')    end,
+              {description = "Control music player", group = "client"}),
     awful.key({ modkey}, "e",
         function ()
             if client.focus then
@@ -647,3 +658,4 @@ _G.toggle_notifications = function()
 end
 -- }}}
 
+awful.spawn.with_shell("/home/linn/.config/awesome/autostart")
