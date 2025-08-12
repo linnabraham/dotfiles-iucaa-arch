@@ -251,8 +251,6 @@ awful.keyboard.append_global_keybindings({
               {description = "show main menu", group = "awesome"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
-    awful.key({ modkey, "Shift"   }, "q", awesome.quit,
-              {description = "quit awesome", group = "awesome"}),
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run {
