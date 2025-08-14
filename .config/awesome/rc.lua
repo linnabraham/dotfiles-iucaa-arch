@@ -262,8 +262,6 @@ awful.keyboard.append_global_keybindings({
     awful.key({ modkey },            "r",     function () awful.spawn.with_shell("ROFI_SCREENSHOT_DIR=/home/linn/Pictures/screenrecs rofi-screenshot")
  end,
               {description = "run prompt", group = "launcher"}),
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"}),
     awful.key({ modkey , "Shift"},            "r",     function () awful.spawn.with_shell("ROFI_SCREENSHOT_DIR=/home/linn/Pictures/screenrecs rofi-screenshot -s")
  end,
               {description = "run prompt", group = "launcher"}),
