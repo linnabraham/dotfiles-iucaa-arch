@@ -100,7 +100,9 @@ if [ -n "$ZSH_VERSION" ]; then
 fi
 
 export LS_OPTIONS="--color=auto"
-bindkey '[Z' autosuggest-accept  # bind ctrl+tab to accept the first autosuggestion
+bindkey '[Z' autosuggest-accept  # bind shift+tab to accept the first autosuggestion
+bindkey 'L' autosuggest-execute # bind shift+l to accept and run the suggestion
+bindkey '^ ' forward-word # bind ctrl + space to accept next word of suggestion
 
 # change the different background coloring for directores which have o+w access
 # to merely underline
