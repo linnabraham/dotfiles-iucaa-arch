@@ -494,6 +494,15 @@ end)
 
 -- }}}
 
+local function get_empty_tag(s)
+    for _, t in ipairs(s.tags) do
+        if #t:clients() == 0 then
+            return t
+        end
+    end
+    return nil
+end
+
 -- {{{ Rules
 -- Rules to apply to new clients.
 ruled.client.connect_signal("request::rules", function()
@@ -550,6 +559,27 @@ ruled.client.connect_signal("request::rules", function()
     --     rule       = { class = "Firefox"     },
     --     properties = { screen = 1, tag = "2" }
     -- }
+	--
+
+	-- Open Apps only in empty workspaces
+	ruled.client.append_rule {
+		id       = "open_on_empty_tag",
+		rule_any     = { class = {"Brave","Zotero","Xfce4-terminal"}},
+		callback = function(c)
+			local tag = get_empty_tag(c.screen)
+			if tag then
+				c:move_to_tag(tag)
+				tag:view_only()  -- switch to that tag automatically
+			else
+				print("No empty tag found for:", c.class)
+			end
+		except_any = {
+			instance = { "__no_rule" }
+		}
+
+		end
+	}
+
 end)
 -- }}}
 
