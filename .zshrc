@@ -11,6 +11,8 @@ bindkey -v # enable vi mode
 zstyle :compinstall filename '/home/linn/.zshrc'
 
 autoload -Uz compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
 compinit
 # End of lines added by compinstall
 # BEGIN Copied from bashrc
@@ -39,7 +41,15 @@ function zle-keymap-select () {
     esac
 }
 zle -N zle-keymap-select
+echo -ne '\e[5 q' # Use beam shape cursor on startup.
+preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -v '^?' backward-delete-char
 # END Lukesmiths changes
+
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
