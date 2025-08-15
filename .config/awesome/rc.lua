@@ -682,4 +682,3 @@ _G.toggle_notifications = function()
 end
 -- }}}
 
-awful.spawn.with_shell("/home/linn/.config/awesome/autostart")
