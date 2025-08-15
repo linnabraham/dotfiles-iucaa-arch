@@ -54,23 +54,16 @@ set message_cache_clean = yes
 # DISPLAY
 source "$HOME/.config/neomutt/display" 
 
-# source "$HOME/.config/neomutt/zenburn.neomuttrc"
-# general-doesn't-fit stuff
-color normal     color188 color237
-color error      color115 color236
-color markers    color142 color238
-color tilde      color108 color237
-color status     color144 color234
-
-# my color definitions
-color index      color188 color237 ~A
-color indicator color132 color236
-color sidebar_highlight red default
-color sidebar_divider brightblack black
-color index_subject color167 color237 ~N
-color index_author color64 color237 "~N"
+macro index,pager <F7> "\
+<enter-command> set my_pipe_decode=\$pipe_decode my_wait_key=\$wait_key \
+pipe_decode=no wait_key=no<enter>\
+<pipe-message> viewhtmlmsg --keep=0<enter>\
+<enter-command> set pipe_decode=\$my_pipe_decode wait_key=\$my_wait_key \
+&my_pipe_decode &my_wait_key<enter>\
+" "view HTML in browser"
 
 set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
+# set mail_check_stats
 bind index,pager B sidebar-toggle-visible
 
 # Previous Mailbox
@@ -89,6 +82,7 @@ bind index k previous-entry
 set mailcap_path = $HOME/.config/neomutt/mailcap
 # automatically show html (mailcap uses lynx)
 auto_view text/html
+## OFFICIAL-GMAIL
 source "~/.config/neomutt/official"
 # Here we use the $folder variable that has just been set in the sourced file.
 # We must set it right now otherwise the 'folder' variable will change in the next sourced file.
