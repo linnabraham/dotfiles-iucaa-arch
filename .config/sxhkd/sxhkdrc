@@ -27,51 +27,17 @@ XF86MonBrightnessDown
 	xbacklight -dec 1
 alt + XF86Favorites
 	playerctl play-pause
-super + shift + Return
-	xfce4-terminal
-	gnome-terminal
-	kitty
-	zsh -i -c "tmux_with_terminal"
-	alacritty
-super + a
-	j4-dmenu-desktop
-#	jgmenu_run
 super + A
 	dmenu_run
-super + BackSpace
-	screenkey
 # this key is bound in picard
 #alt + A
 super + b
 	bukumenu
-	dmenu-search-urls.sh
 super + B
 	bukuadd
 # key binding used up by autokey for inserting date
-super + D
-	rofi-date	
-	#rofi -i -show run
-#	buku-dmenu
-super + s
-	ROFI_SCREENSHOT_DIR=$HOME/Pictures/screenrecs rofi-screenshot
-super + S
-	ROFI_SCREENSHOT_DIR=$HOME/Pictures/screenrecs rofi-screenshot -s
-super + p
-	rofi-pass
-#	passmenu
+#super + D
 #super + P - conflict with subl keybinding
-super + u
-	wrapper-wmctrl.sh mpdevil
-	jumpapp mpdevil
-	jumpapp ymuse
-super + w
-	switch-i3-workspace.sh
-#	rofi-dict.sh
-super + slash
-	mpc_control -t
-super + question
-	dmenu-wrapper-music
-#	hotkey-helper.sh
 shift + Prior
 	mpc prev
 shift + Next
