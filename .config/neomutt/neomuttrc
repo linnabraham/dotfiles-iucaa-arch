@@ -51,25 +51,6 @@ set header_cache = "$HOME/.muttcache"
 set message_cache_dir = "$HOME/.muttcache"
 set message_cache_clean = yes
 
-# IUCAA
-set real_name = 'Linn Abraham'
-set from = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2-`"
-# IMAP
-set folder = 'imaps://daakghar.iucaa.in/'
-set imap_user = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2- | cut -d'@' -f1`"
-set imap_pass="`pass show iucaa/zimbra/linn | head -n 1`"
-set spoolfile = +"INBOX"
-set record = +"Sent"
-set postponed = +"Drafts"
-set trash = +"Trash"
-
-mailboxes +INBOX +Sent +Drafts +Trash
-
-# iucaa smtp
-set smtp_url = smtp://daakghar.iucaa.in/
-set smtp_user = $imap_user
-set smtp_pass = $imap_pass
-
 # DISPLAY
 source "$HOME/.config/neomutt/display" 
 
@@ -108,3 +89,11 @@ bind index k previous-entry
 set mailcap_path = $HOME/.config/neomutt/mailcap
 # automatically show html (mailcap uses lynx)
 auto_view text/html
+source "~/.config/neomutt/official"
+# Here we use the $folder variable that has just been set in the sourced file.
+# We must set it right now otherwise the 'folder' variable will change in the next sourced file.
+folder-hook $folder 'source ~/.config/neomutt/official'
+
+## IUCAA
+source "~/.config/neomutt/iucaa"
+folder-hook $folder 'source ~/.config/neomutt/iucaa'
