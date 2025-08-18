@@ -55,6 +55,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -136,6 +137,22 @@ mykeyboardlayout = awful.widget.keyboardlayout()
 
 -- Create a textclock widget
 mytextclock = wibox.widget.textclock()
+
+local cw = calendar_widget({
+	theme = 'outrun',
+	placement = 'top_right',
+	start_sunday = true,
+	radius = 8,
+	-- with customized next/previous (see table above)
+	previous_month_button = 1,
+	next_month_button = 3,
+})
+
+-- Connect calendar widget to textclock
+mytextclock:connect_signal("button::press",
+	function(_, _, _, button)
+		if button == 1 then cw.toggle() end
+	end)
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
