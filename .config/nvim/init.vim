@@ -32,3 +32,15 @@ let g:ale_linters = {
 \}
 set tabstop=4       " Number of spaces that a <Tab> in the file counts for
 set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+" Enable spell checking by default for certain file types
+autocmd FileType markdown,text,tex setlocal spell spelllang=en_us,en_gb
+nnoremap <leader>sn :setlocal spell!<CR>       " Toggle spell check
+set spellfile=$HOME/Dropbox/vim-spell/en.utf-8.add
+set complete+=kspell
+
+" Disable auto-commenting on newline
+set formatoptions-=c formatoptions-=r formatoptions-=o  " apply now
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  " reapply after ftplugin
+
+" Show tabline always
+set showtabline=2

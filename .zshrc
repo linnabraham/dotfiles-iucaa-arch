@@ -6,6 +6,9 @@ HISTSIZE=1000000
 SAVEHIST=500000
 setopt autocd # Automatically cd into typed directory.
 bindkey -v # enable vi mode
+# Make Ctrl+R do incremental reverse search
+bindkey '^R' history-incremental-search-backward
+bindkey '^S' history-incremental-search-forward  # optional, for forward search
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename '/home/linn/.zshrc'
@@ -53,8 +56,6 @@ bindkey -v '^?' backward-delete-char
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-ENABLE_CORRECTION="true"
-setopt CORRECT
 
 autoload -Uz add-zsh-hook
 
@@ -136,3 +137,7 @@ lfcd () {
     fi
 }
 export FZF_DEFAULT_OPTS="--layout=reverse --height=40% --border"
+# use bat to colorize manpages
+export MANPAGER="sh -c 'sed -u -e \"s/\\x1B\[[0-9;]*m//g; s/.\\x08//g\" | bat -p -lman'"
+# Ignore Ctrl+D completely
+set -o ignoreeof	
