@@ -17,6 +17,7 @@ set clipboard=unnamedplus
 set relativenumber
 " Configure listchars
 set listchars=tab:\|\ ,trail:·
+set list " Show listchars
 " use my custom snippets in place of the default
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/my-snippets/']
 let g:UltiSnipsExpandTrigger       = '<Tab>'    " use Tab to expand snippets
