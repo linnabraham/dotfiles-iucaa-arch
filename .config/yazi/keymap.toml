@@ -13,11 +13,11 @@ keymap = [
 	{ on = "<C-z>", run = "suspend",            desc = "Suspend the process" },
 
 	# Hopping
-	{ on = "k", run = "arrow prev", desc = "Previous file" },
-	{ on = "j", run = "arrow next", desc = "Next file" },
+	{ on = "k", run = "arrow -1", desc = "Previous file" },
+	{ on = "j", run = "arrow 1", desc = "Next file" },
 
-	{ on = "<Up>",   run = "arrow prev", desc = "Previous file" },
-	{ on = "<Down>", run = "arrow next", desc = "Next file" },
+	{ on = "<Up>",   run = "arrow -1", desc = "Previous file" },
+	{ on = "<Down>", run = "arrow 1", desc = "Next file" },
 
 	{ on = "<C-u>", run = "arrow -50%",  desc = "Move cursor up half page" },
 	{ on = "<C-d>", run = "arrow 50%",   desc = "Move cursor down half page" },
