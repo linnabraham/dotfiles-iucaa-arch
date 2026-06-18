@@ -5,7 +5,6 @@ HISTSIZE=1000000
 # number of lines that are saved to file
 SAVEHIST=500000
 setopt autocd # Automatically cd into typed directory.
-bindkey -v # enable vi mode
 # Make Ctrl+R do incremental reverse search
 bindkey '^R' history-incremental-search-backward
 bindkey '^S' history-incremental-search-forward  # optional, for forward search
@@ -31,7 +30,7 @@ if [[ -f ~/.bashrc_scripts ]]; then
 fi
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
 gpgconf --launch gpg-agent
-export EDITOR="/usr/bin/vim"
+export EDITOR="/usr/bin/nvim"
 
 # END copied from bashrc
 # BEGIN Lukesmiths changes
@@ -76,12 +75,13 @@ fi
 
 export TEXMFHOME=/home/linn/.texmf/
 export PATH="$PATH:$HOME/.virtualenvs/py37/bin" # append path in the beginning to not override default python
+export PATH="$PATH:$HOME/.cargo/bin"
 
 autoload -U colors && colors # load color support in prompt
 autoload -Uz vcs_info # load version control info package
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true # tells the back-end to check for working-copy changes and staged changes.
-zstyle ':vcs_info:git*' formats "%{$fg[red]%}%b%a%{$reset_color%}[%m%u%c]%{$reset_color%}"
+zstyle ':vcs_info:git*' formats "%{$fg[red]%}%b%i%a%{$reset_color%}[%m%u%c]%{$reset_color%}"
 #zstyle ':vcs_info:git*' formats "%b (%a) %m%u%c "
 #### Changes to prompt ######
 precmd() { vcs_info }
@@ -100,7 +100,9 @@ current_path+="${(j:/:)paths}"
 add-zsh-hook precmd trunc_path
 
 NEWLINE=$'\n'
-PROMPT='%{$fg[green]%}%{$fg[blue]%}%n@%{$fg[blue]%}%M %{$fg[magenta]%}% ${current_path} ${vcs_info_msg_0_}${NEWLINE}>'
+#source $HOME/git.zsh
+#PROMPT='%{$fg[green]%}%{$fg[blue]%}%n@%{$fg[blue]%}%M %{$fg[magenta]%}% ${current_path} $(git_prompt_short_sha) ${vcs_info_msg_0_}${NEWLINE} > '
+PROMPT='%{$fg[green]%}%{$fg[blue]%}%n@%{$fg[blue]%}%M %{$fg[magenta]%}% ${current_path} ${vcs_info_msg_0_}${NEWLINE} > '
 # Set up the prompt (with git branch name)
 
 setopt PROMPT_SUBST
@@ -120,6 +122,7 @@ bindkey '^ ' forward-word # bind ctrl + space to accept next word of suggestion
 export LS_COLORS="$LS_COLORS:ow=1;34;4:"
 
 [ -f /opt/miniconda3/etc/profile.d/conda.sh ] && source /opt/miniconda3/etc/profile.d/conda.sh
+source ~/.bash_profile
 source ~/.zshrc_scripts
 source ~/.secrets
 # wrapper for cd when exiting lf ref - https://github.com/gokcehan/lf/blob/master/etc/lfcd.sh
