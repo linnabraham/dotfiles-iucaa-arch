@@ -1,0 +1,107 @@
+.local/
+.cache/
+Downloads/
+data_backups/
+zotero-books/
+.cargo/
+docker/
+dbcloud/
+Syncthing/
+compiled-books/
+.zotero/
+.zoom/
+.claude/
+.config/BraveSoftware/
+.config/chrome/
+.config/chromium/
+.vscode/
+.thunderbird/
+.pub-cache/
+.config/coc/
+.npm/
+.dropbox-dist/
+.koofr-dist/
+.java/
+.globonote/
+.config/ticktick/
+.dropbox/
+.config/skypeforlinux/
+.config/notion-calendar-electron/
+.config/obsidian/
+.config/google-chrome/
+.config/libreoffice/
+.config/pcloud/
+.koofr/
+.workrave/
+.vim/
+.texlive/
+.config/cod-ibroadcast/
+.config/anytype
+.config/transmission-daemon/
+.config/rustdesk/
+.config/Popcorn-Time/
+.config/Capacities/
+.jupyter/
+.megaCmd/
+.gnupg/
+.config/awesome/themes/
+.config/Plexamp/
+.config/nvim/plugged/
+.config/Termius/
+.config/xournalpp/
+.config/Electron/
+.config/Logseq/
+.config/Keybase/
+.config/keybase/
+.ipynb_checkpoints/
+.ipython/
+.config/GIMP/
+.config/transmission.bad
+.dart-tool
+.config/xfce4
+.config/spotify
+.config/plank
+.config/pulse
+.config/puddletag
+.config/cef_user_data/
+.config/copyq/
+.config/calibre/
+.config/inkscape/
+.config/autostart/
+.config/MusicBrainz/
+.config/session/
+.config/ibus/
+.config/evolution/
+.anydesk/
+.astropy/
+.xorgxrdp*
+.wingtask*
+.terminfo
+.logseq
+.openjfx
+.dotnet
+
+# ignore everything
+#*
+
+# un-ignore tracked config dirs
+# !/.config/
+# !/.config/niri/
+# !/.config/niri/**
+# !/.zshrc
+
+# un-ignore .config dir itself (not its contents)
+#!.config/
+
+# un-ignore the specific subdir
+# !.config/niri/
+
+# un-ignore contents
+# !.config/niri/**
+
+
+# backup
+.ssh/
+.pcloud/
+.config/systemd/user/
+.config/openbox

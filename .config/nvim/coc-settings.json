@@ -1,0 +1,5 @@
+{
+  "coc.source.spell.filetypes": ["markdown", "text", "tex", "plaintex"],
+  "coc.source.spell.enable": true,
+  "spell-checker.language": "en-US"
+}

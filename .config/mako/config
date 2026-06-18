@@ -1,0 +1,2 @@
+# Default timeout in milliseconds (e.g., 5000 = 5 seconds)
+default-timeout=5000

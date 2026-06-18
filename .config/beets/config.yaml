@@ -1,0 +1,10 @@
+directory: ~/Music
+library: ~/.local/share/beets/library.db
+
+import:
+  copy: no      # Don't move files
+  move: no      # Don't reorganize
+  autotag: yes
+  write: yes
+  resume: ask
+  incremental: yes

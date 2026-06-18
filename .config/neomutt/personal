@@ -1,0 +1,17 @@
+# Personal GMAIL
+
+# Receive options
+set mbox_type = Maildir
+set folder = "/home/linn/.local/share/mail/personal-gmail"
+set spoolfile = "+Inbox"
+set postponed = "+[Gmail]/Drafts"
+set record        = ""                     # Don't save sent mail manually
+
+mailboxes "$spoolfile" "+[Gmail]/Sent Mail" "+[Gmail]/All Mail" "+Sent" "$postponed"
+
+# Send options
+set smtp_user = "`pass show gmail | grep '^user:' | cut -d' ' -f2- | cut -d'@' -f1`"
+set smtp_pass="`pass show app-passwords/k9mail | head -n 1`"
+set smtp_url = "smtp://$imap_user@smtp.gmail.com:587/"
+set from = "`pass show gmail | grep '^user:' | cut -d' ' -f2-`"
+set realname = "Linn Abraham"

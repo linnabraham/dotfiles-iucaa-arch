@@ -1,0 +1,10 @@
+# vim: filetype=conf
+
+ncmpcpp_directory = "~/.config/ncmpcpp"
+message_delay_time = "1"
+visualizer_type = "spectrum"
+playlist_display_mode = columns
+browser_display_mode = columns
+media_library_primary_tag = album_artist
+external_editor = nvim
+use_console_editor = yes

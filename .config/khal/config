@@ -1,0 +1,37 @@
+[calendars]
+
+# --- local remind calendar (your source of truth) ---
+[[remind-daily]]
+path = /home/linn/.local/share/linn/calendars/google-calendar/037ce59f79418b478fd84de92a3fc5545f4c388f1c343704b59f8557f9e19817@group.calendar.google.com
+type = calendar
+color = dark green
+readonly = False
+
+[[remind-birthdays]]
+type = calendar
+color = dark blue
+path = /home/linn/.local/share/linn/calendars/google-calendar/160e489b9afd50fc7315e3b2f54acf3d3a1200bb76194a14ede09c10706e4409@group.calendar.google.com
+readonly = False
+
+[[remind-canteen]]
+type = calendar
+color = dark red
+path = /home/linn/.local/share/linn/calendars/google-calendar/7c4f52dedb829374cf5540bb68cccd60f75aed5c410344f7bd63dbc06ca5c219@group.calendar.google.com
+readonly = False
+
+# --- google official calendar (read-only) ---
+[[official]]
+path = /home/linn/.local/share/linn/calendars/google-calendar/linn.official@gmail.com
+type = calendar
+color = dark green
+readonly = True
+
+[locale]
+timeformat = %H:%M
+dateformat = %Y-%m-%d          # must include year
+longdateformat = %Y-%m-%d
+datetimeformat = %Y-%m-%d %H:%M
+longdatetimeformat = %Y-%m-%d %H:%M
+
+[default]
+default_calendar = remind-daily
