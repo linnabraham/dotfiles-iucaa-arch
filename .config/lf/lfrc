@@ -16,8 +16,8 @@
 #    called directly instead of normal lf.
 
 set ifs "\n"
-set cleaner '~/.config/lf/cleaner'
-set previewer '~/.config/lf/preview'
+set cleaner '~/.config/lf/cleaner-kitty'
+set previewer '~/.config/lf/preview-kitty'
 set icons
 set sortby 'time'
 set reverse true
@@ -25,7 +25,8 @@ set reverse true
 cmd open-with %"$@" "$fx"
 map ` push :open-with<space>
 
-cmd yank-paths $printf '%s' "$fx" | sed 's|^|file://|' | xclip -i -selection clipboard -t text/uri-list
+# cmd yank-paths $printf '%s' "$fx" | sed 's|^|file://|' | xclip -i -selection clipboard -t text/uri-list
+cmd yank-paths $printf '%s' "$fx" | sed 's|^|file://|' | wl-copy --type text/uri-list
 map Y yank-paths
 
 cmd mkdir ${{ printf "Folder Name: "; read ans; mkdir $ans 2> /dev/null || sudo mkdir $ans }}

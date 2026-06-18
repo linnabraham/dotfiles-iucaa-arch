@@ -1,4 +1,4 @@
-# [Created by task 3.4.1 8/8/2025 16:30:11]
+# [Created by ķtask 3.4.1 8/8/2025 16:30:11]
 data.location=/home/linn/.task
 news.version=3.4.1
 
@@ -24,19 +24,52 @@ news.version=3.4.1
 #include solarized-dark-256.theme
 #include solarized-light-256.theme
 #include no-color.theme
-uda.reviewed.type=date
-uda.reviewed.label=Reviewed
-report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
-report._reviewed.columns=uuid
-report._reviewed.sort=reviewed+,modified+
-report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
-urgency.user.tag.thesis.coefficient=1.1
-urgency.user.tag.someday.coefficient=-0.5
-urgency.user.tag.fix.coefficient=0.5
-report.projall.description=Simple list of open tasks by project
-report.projall.columns=id,status,entry.age,tags,project,description.count,urgency
-report.projall.filter=(status:pending or status:completed)
-report.showtasks.description=My report to use instead of next
-report.showtasks.columns=id,start.age,entry.age,tags,depends,priority,recur,scheduled.countdown,due.relative,until.remaining,description,project,urgency
-report.showtasks.filter=status:pending -WAITING -archive limit:none
-default.command=showtasks
+uda.priority.values=H,M,,L
+urgency.uda.priority.L.coefficient=-1.8
+urgency.uda.priority..coefficient=1.8
+report.next.columns=id,start.age,entry.age,depends,priority,project,tags,recur,scheduled.countdown,due.relative,until.remaining,description.count,urgency
+report.next.filter=status:pending -WAITING -archive -project limit:30
+report.shownext.columns=id,start.age,entry.age,depends,recur,scheduled.countdown,due.relative,until.remaining,description.count,tags
+report.shownext.filter=status:pending -WAITING -archive -project limit:30
+report.shownext.sort=urgency-
+urgency.user.tag.urgent.coefficient=2
+urgency.user.tag.wontdo.coefficient=-5
+urgency.user.tag.idea.coefficient=-4
+urgency.user.tag.someday.coefficient=-1
+urgency.user.tag.maybe.coefficient=-4
+urgency.user.tag.dashboard.coefficient=-5
+urgency.user.tag.wild.coefficient=-2
+urgency.user.project.work.coefficient=2
+urgency.user.project.house.coefficient=-1
+urgency.user.project.fun.coefficient=-2
+urgency.user.project.sidequest.coefficient=-3
+urgency.project.coefficient=0.0
+urgency.tags.coefficient=0.0
+urgency.blocking.coefficient=1.0
+context.house.read=+@house or proj:house
+context.house.write=+@house
+context.work.read=-maybe -someday -@outside -@laptop -@phone -@house -linux -project and proj:work or +urgent or +career or +@office
+report.all.columns=id,status.short,uuid.short,start.active,entry.age,end.age,depends.indicator,priority,project.parent,tags,recur.indicator,wait.remaining,scheduled.remaining,due,until.remaining,description
+#alias.house=status:pending and (proj:house or +@house)
+#alias.shopping=status:pending and (proj:personal.shopping or proj:work.shopping or proj:house.shopping or +shopping)
+#alias.shopping=status:pending and (proj:personal.shopping or proj:work.shopping or proj:house.shopping) and (proj.not:personal.shopping.ideas) and (proj.not:house.shopping.ideas)
+#ķalias.personal=limit:30 status:pending and (proj:personal or ( proj.not:work and proj.not:fun and proj.not:sidequest ))
+#alias.work=status:pending proj:work
+#alias.solar=status:pending proj:work.solar
+alias.fun=status:pending proj:fun
+#alias.phone=status:pending +@phone
+alias.peeps=tags:people
+alias.dashboard=tag:dashboard
+report.narrow.description=Narrow list of pending tasks
+report.narrow.columns=id,project,description.count,tags,due.relative
+report.narrow.labels=ID,Proj,Task,Tag,Due
+report.narrow.filter=status:pending -archive -dashboard
+report.narrow.sort=urgency-
+default.command=narrow limit:40
+report.recent.description=Narrow list of pending tasks
+report.recent.columns=id,project,description.count,tags,due.relative
+report.recent.labels=ID,Proj,Task,Tag,Due
+report.recent.filter=status:pending -archive -dashboard limit:40
+report.recent.sort=entry-
+report.newest.columns=id,project,description.count,tags,due.relative
+report.newest.labels=ID,Proj,Task,Tag,Due

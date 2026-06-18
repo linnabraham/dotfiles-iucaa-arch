@@ -52,9 +52,13 @@ naughty.config.presets.critical = {
 local ruled = require("ruled")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+--local mpd_widget = require("mpd_widget")
+-- local musbar = require("statusbar.aw-music-compact")
+-- local music_widget = musbar.create_music_widget()
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 local ram_widget = require("awesome-wm-widgets.ram-widget.ram-widget")
 local volume_widget = require('awesome-wm-widgets.pactl-widget.volume')
+local cyclefocus = require('cyclefocus')
 local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -80,6 +84,7 @@ beautiful.init(theme_path)
 
 -- This is used later as the default terminal and editor to run.
 terminal = "xfce4-terminal"
+-- terminal = "st"
 editor = os.getenv("EDITOR") or "nano"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -226,8 +231,10 @@ local separator = wibox.widget {
             },
             s.mytasklist, -- Middle widget
             { -- Right widgets
+		--mpd_widget,
 		volume_widget({step = '1'}),
 		separator,
+		-- music_widget,
 		ram_widget(),
 		brightness_widget{
 		    type = 'icon_and_text',
@@ -308,14 +315,32 @@ awful.keyboard.append_global_keybindings({
         end,
         {description = "focus previous by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
+    -- awful.key({ modkey,           }, "Tab",
+    --     function ()
+    --         awful.client.focus.history.previous()
+    --         if client.focus then
+    --             client.focus:raise()
+    --         end
+    --     end,
+    --     {description = "go back", group = "client"}),
+    -- Alt+Tab: cycle through all clients
+    -- awful.key({ "Mod4" }, "Tab", function()
+    --     cyclefocus.cycle({modifier="Mod4"})
+    -- end),
+    -- 
+    -- -- Alt+Shift+Tab: backwards cycle
+    -- awful.key({ "Mod4", "Shift" }, "Tab", function()
+    --     cyclefocus.cycle({modifier="Mod1"})
+    -- end),
+    -- modkey+Tab: cycle through all clients.
+    awful.key({ modkey }, "Tab", function(c)
+        cyclefocus.cycle({modifier="Super_L"})
+    end),
+    -- modkey+Shift+Tab: backwards
+    awful.key({ modkey, "Shift" }, "Tab", function(c)
+        cyclefocus.cycle({modifier="Super_L"})
+    end),
+
     awful.key({ modkey, "Control" }, "j", function () awful.screen.focus_relative( 1) end,
               {description = "focus the next screen", group = "screen"}),
     awful.key({ modkey, "Control" }, "k", function () awful.screen.focus_relative(-1) end,
@@ -375,8 +400,17 @@ awful.keyboard.append_global_keybindings({
             end
         end,
         {description = "move focused window to master", group = "client"}),
+	-- awful.key({ modkey, "Shift" }, "Return", function()
+	-- 	local current_layout = awful.layout.get(mouse.screen)
+	-- 	awful.layout.set(awful.layout.suit.tile.bottom)
+	-- 	awful.spawn(terminal)
+	-- end),
     awful.key({ modkey}, "q", function () awful.spawn('rofi -show calc -modi calc -no-show-match -no-sor')	end,
               {description = "Rofi based calculator", group = "client"}),
+    awful.key({ modkey, "Shift"}, "f", function () awful.spawn('simplefm')	end,
+              {description = "Simple File Manager based on dmenu-fm", group = "client"}),
+    awful.key({ modkey}, "z", function () awful.spawn('tdrop -a -m -w 60% -h 30% alacritty')    end,
+              {description = "T drop", group = "client"}),
 })
 
 
@@ -581,7 +615,7 @@ ruled.client.connect_signal("request::rules", function()
 	-- Open Apps only in empty workspaces
 	ruled.client.append_rule {
 		id       = "open_on_empty_tag",
-		rule_any     = { class = {"Brave","Zotero","Xfce4-terminal"}},
+		rule_any     = { class = {"Brave","Zotero","St","Xfce4-terminal"}},
 		callback = function(c)
 			local tag = get_empty_tag(c.screen)
 			if tag then
@@ -699,3 +733,9 @@ _G.toggle_notifications = function()
 end
 -- }}}
 
+-- start apps defined in autostart locations
+awful.spawn.with_shell(
+    'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;' ..
+    'xrdb -merge <<< "awesome.started:true";' ..
+    'dex --environment Awesome --autostart --search-paths "${XDG_CONFIG_HOME:-$HOME/.config}/autostart:${XDG_CONFIG_DIRS:-/etc/xdg}/autostart";'
+    )

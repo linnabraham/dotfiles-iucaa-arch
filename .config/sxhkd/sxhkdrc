@@ -35,9 +35,13 @@ super + b
 	bukumenu
 super + B
 	bukuadd
+super + C
+	rofi -modi "clipboard:greenclip print" -show clipboard -run-command '{cmd}'
 # key binding used up by autokey for inserting date
 #super + D
 #super + P - conflict with subl keybinding
+super + u
+	mpdevil
 shift + Prior
 	mpc prev
 shift + Next
@@ -46,3 +50,6 @@ Print
 	openbox-screenshot.sh
 super + Print
 	xmenu-screenshot.sh
+	# st -c "Override"
+super + shift + Return
+	xfce4-terminal --disable-server --class="override"
