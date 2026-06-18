@@ -10,7 +10,38 @@ Plug 'dense-analysis/ale' " Latex linting
 Plug 'instant-markdown/vim-instant-markdown', {'for': 'markdown'} "live preview for markdown
 Plug 'jamessan/vim-gnupg' "gpg encrypted notes
 Plug 'lewis6991/gitsigns.nvim' "show git changes in line
+Plug 'stevearc/oil.nvim'
+Plug 'nvim-tree/nvim-web-devicons' " Optional: for file icons
+" Telescope requirements
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.8' }
+Plug 'tpope/vim-fugitive'
 call plug#end()
+
+" 2. The Lua Initialization
+lua << EOF
+require("oil").setup({
+  view_options = {
+    sort = {
+      { "type", "asc" },
+      { "mtime", "desc" },
+    },
+  },
+})
+EOF
+
+" 3. The Keybinding
+nnoremap - <CMD>Oil<CR>
+
+" --- Telescope Configuration ---
+lua << EOF
+require('telescope').setup{
+  defaults = {
+    -- This makes the UI feel snappy and ignores hidden git files
+    file_ignore_patterns = { ".git/" },
+  }
+}
+EOF
 
 " for copy to system clipboard; requires +clipboard
 set clipboard=unnamedplus
