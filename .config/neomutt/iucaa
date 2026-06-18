@@ -16,3 +16,5 @@ set smtp_user = $imap_user
 set smtp_pass = $imap_pass
 set from = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2-`"
 set real_name = 'Linn Abraham'
+
+set attach_save_dir="~/Downloads/booksnstuff"
