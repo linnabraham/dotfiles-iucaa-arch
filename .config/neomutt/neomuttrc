@@ -5,6 +5,8 @@ set xterm_set_titles=yes
 # Unread mail stay unread until read
 set mark_old = no		
 set forward_attachments = yes
+set mime_forward = ask-yes
+set forward_quote=yes         # don’t include inline quoted text
 
 # display non-ASCII characters in headers
 set rfc2047_parameters=yes
@@ -49,7 +51,6 @@ set mail_check = 120
 
 set header_cache = "$HOME/.muttcache"
 set message_cache_dir = "$HOME/.muttcache"
-set message_cache_clean = yes
 
 # DISPLAY
 source "$HOME/.config/neomutt/display" 
@@ -62,6 +63,8 @@ pipe_decode=no wait_key=no<enter>\
 &my_pipe_decode &my_wait_key<enter>\
 " "view HTML in browser"
 
+macro index <F9> "<pipe-message>abook --add-email-quiet<enter>" "Add sender to abook"
+
 set sidebar_format = "%B%<F? [%F]>%* %<N?%N/>%S"
 # set mail_check_stats
 bind index,pager B sidebar-toggle-visible
@@ -71,7 +74,7 @@ bind index,pager J sidebar-next
 # Next Mailbox
 bind index,pager K sidebar-prev
 # Ctrl-O – Open Highlighted Mailbox
-bind index,pager \CO sidebar-open
+bind index,pager O sidebar-open
 
 bind pager j next-line
 bind pager k previous-line
@@ -82,6 +85,35 @@ bind index k previous-entry
 set mailcap_path = $HOME/.config/neomutt/mailcap
 # automatically show html (mailcap uses lynx)
 auto_view text/html
+alternative_order text/plain text/enriched text/html
+
+# Use Khard as address book
+set query_command = "~/.local/bin/khard_mutt_query '%s'"
+
+# Enable tab-completion of addresses when composing
+bind editor <Tab> complete-query
+
+# # Don’t prefix lines with ">"
+# set indent_string=""
+
+# # Show a header line before the included text
+# set attribution="----- Original Message -----"
+
+set mail_check_stats # show counts for all mailboxes
+
+set sidebar_width = 25
+set sidebar_format = '%B%* %?N?%N/?%S'
+set sidebar_short_path = yes # Shows only the folder name (e.g., "Inbox")
+
+set nm_default_url = "notmuch:///home/linn/.local/share/mail"
+
+virtual-mailboxes \
+    "UniINBOX"     "notmuch://?query=tag:inbox and NOT tag:archive"\
+
+# notmuch bindings
+macro index \\\\ "<vfolder-from-query>"              # looks up a hand made query
+macro index o "<shell-escape>mbsync -a<enter>" "run mbsync to sync all accounts"
+
 ## OFFICIAL-GMAIL
 source "~/.config/neomutt/official"
 # Here we use the $folder variable that has just been set in the sourced file.
@@ -91,3 +123,7 @@ folder-hook $folder 'source ~/.config/neomutt/official'
 ## IUCAA
 source "~/.config/neomutt/iucaa"
 folder-hook $folder 'source ~/.config/neomutt/iucaa'
+
+## Personal-Gmail
+source "~/.config/neomutt/personal"
+folder-hook $folder 'source ~/.config/neomutt/personal'
