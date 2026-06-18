@@ -1,8 +1,8 @@
 # IUCAA
+
 # Receive options
-set imap_user = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2- | cut -d'@' -f1`"
-set imap_pass="`pass show iucaa/zimbra/linn | head -n 1`"
-set folder = 'imaps://daakghar.iucaa.in/'
+set mbox_type = Maildir
+set folder = "/home/linn/.local/share/mail/iucaa"
 set spoolfile = +"INBOX"
 set record = +"Sent"
 set postponed = +"Drafts"
@@ -12,8 +12,8 @@ mailboxes +INBOX +Sent +Drafts +Trash
 
 # Send options
 set smtp_url = smtp://daakghar.iucaa.in/
-set smtp_user = $imap_user
-set smtp_pass = $imap_pass
+set smtp_user = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2- | cut -d'@' -f1`"
+set smtp_pass="`pass show iucaa/zimbra/linn | head -n 1`"
 set from = "`pass show iucaa/zimbra/linn | grep '^user:' | cut -d' ' -f2-`"
 set real_name = 'Linn Abraham'
 
