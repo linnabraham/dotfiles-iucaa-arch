@@ -1,13 +1,56 @@
 play(){
-    findfile="$(find -L ~  -iname "*.mp3" -maxdepth 5 2>/dev/null | fzf)"
+    findfile="$(find -L ~/data_backups  -iname "*.mp3" -maxdepth 5 2>/dev/null | fzf)"
     #touch ~/.mpvhist
-    echo "$findfile" >> ~/.mpvhist
+    # echo "$findfile" >> ~/.mpvhist
     #uniq < ~/.mpvhist >> ~/.mpvhist
-    sort -u ~/.mpvhist -o ~/.mpvhist
-    mpv --loop --shuffle $findfile
-    echo $findfile
+    # sort -u ~/.mpvhist -o ~/.mpvhist
+    # mpv --loop --shuffle $findfile
+    # echo $findfile | tee >(tr -d "\n" | xclip -selection clipboard)
+	# echo "$findfile"
+	mp3info "$findfile"
+	exiftool "$findfile"
+}
+
+playhere(){
+	findfile="$(find -L . -iname "*.mp3" -maxdepth 5 2>/dev/null | fzf)"
+	exiftool $findfile
 }
 
 wedit(){
     vim "$(which "$1")"
+}
+
+function nbfind(){
+find . -name '*.ipynb' | while read -r file; do  jq -r '.cells[].source[]?' "$file" | grep --color=always -H "$1" | sed "s|^|$file: |"; done | less -R
+}
+
+xc() {
+    if command -v wl-copy >/dev/null 2>&1 && [ -n "$WAYLAND_DISPLAY" ]; then
+        wl-copy < "$1"
+    elif command -v xsel >/dev/null 2>&1; then
+        xsel --clipboard --input < "$1"
+    else
+        echo "No clipboard utility found" >&2
+        return 1
+    fi
+}
+
+
+tn() {
+    cd $HOME/PARA/projects/archive/writing/TeXNotes || return 1
+    /opt/miniconda3/envs/texnotes/bin/python3 manage.py "$@"
+}
+
+xn() {
+	source tomb-notes && cd $tomb_dir/HomeNotes
+    /opt/miniconda3/envs/texnotes/bin/python3 manage.py "$@"
+}
+
+function yz() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
 }
