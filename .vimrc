@@ -47,6 +47,7 @@ Plug 'preservim/nerdtree'
 Plug 'tpope/vim-surround'
 Plug 'vim-airline/vim-airline'
 Plug 'jreybert/vimagit'
+Plug 'preservim/nerdcommenter' " For code commenting powers
 "" A bunch of useful language related snippets (ultisnips is the engine).
 Plug 'SirVer/ultisnips' "| Plug 'honza/vim-snippets'
 Plug 'romainl/vim-qf' "Quit quickfix window when last window is closed
@@ -58,12 +59,14 @@ call plug#end()
 " -----------------------------------------------------------------------------
 set background=dark
 "let g:solarized_termcolors=256
+colorscheme sorbet
 " This needs to come last, otherwise the colors aren't correct.
 syntax on
 
 
 
 set clipboard=unnamedplus "requires +clipboard
+set relativenumber
 
 " Formatting {
     "set autoindent                  " Indent at the same level of the previous line
@@ -81,12 +84,20 @@ set listchars=tab:\|\ ,trail:·
 " reopening a file
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 " change default keybinding to accept coc dropdown from Ctrl+y
-inoremap <expr> <Tab> pumvisible() ? coc#_select_confirm() : "<Tab>"
-"let g:vimtex_view_general_viewer = 'mupdf'
+inoremap <expr> <CR> pumvisible() ? coc#_select_confirm() : "<CR>"
 let g:vimtex_view_general_viewer = 'evince'
 let g:vimtex_quickfix_open_on_warning = 0
 nnoremap <C-n> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>+ :exe "resize " . (winheight(0) * 3/2)<CR>
+nnoremap <silent> <Leader>- :exe "resize " . (winheight(0) * 2/3)<CR>
 let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/plugged/my-snippets/']
 let g:UltiSnipsExpandTrigger       = '<Tab>'    " use Tab to expand snippets
 let g:UltiSnipsJumpForwardTrigger  = '<Tab>'    " use Tab to move forward through tabstops
 let g:UltiSnipsJumpBackwardTrigger = '<S-Tab>'  " use Shift-Tab to move backward through tabstops
+" " Spell-check set to <leader>o, 'o' for 'orthography':
+" map <leader>g :setlocal spell! spelllang=en_us<CR>
+" Enable spell checking by default for certain file types
+autocmd FileType markdown,text,tex setlocal spell spelllang=en_us,en_gb
+
+" Optional: quick mappings for spell commands
+nnoremap <leader>sn :setlocal spell!<CR>       " Toggle spell check
