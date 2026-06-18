@@ -67,6 +67,12 @@ let g:ale_linters = {
 \}
 set tabstop=4       " Number of spaces that a <Tab> in the file counts for
 set shiftwidth=4    " Number of spaces to use for each step of (auto)indent
+"let g:vimtex_compiler_latexmk = {
+      "\ 'build_dir' : '../pdf',
+      \}
+
+set commentstring=#\ %s
+
 " Enable spell checking by default for certain file types
 autocmd FileType markdown,text,tex setlocal spell spelllang=en_us,en_gb
 nnoremap <leader>sn :setlocal spell!<CR>       " Toggle spell check
@@ -79,3 +85,15 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o  
 
 " Show tabline always
 set showtabline=2
+
+" Use <leader>tn / <leader>tp to navigate tabs quickly
+nnoremap <leader>tn :tabnext<CR>
+nnoremap <leader>tp :tabprevious<CR>
+nnoremap <leader>tc :tabclose<CR>
+nnoremap <leader>to :tabonly<CR
+set noautoindent
+set nosmartindent
+set nocindent
+set expandtab
+let g:netrw_sort_by = 'time'
+let g:netrw_sort_direction = 'reverse'
